@@ -1,0 +1,22 @@
+%{
+}%
+
+start expr;
+
+expr : dis exprs;
+exprs : XOR expr | EPS;
+dis : con diss;
+diss : OR dis | EPS;
+con : nott cons;
+cons : AND con | EPS;
+nott : temp | NOT temp;
+temp : VAR | LBR expr RBR;
+
+VAR : "[a-z]";
+LBR : "[(]";
+RBR : "[)]";
+NOT : "\\bnot\\b";
+AND : "\\band\\b";
+OR : "\\bor\\b";
+XOR : "\\bxor\\b";
+WS : "[ \t\r\n]" -> drop;

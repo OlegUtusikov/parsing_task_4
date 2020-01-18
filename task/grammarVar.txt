@@ -1,0 +1,18 @@
+%{
+// Parser for pascal variables
+}%
+
+start s;
+
+s : VAR block;
+block : v SEMICOLON block | EPS;
+v : NAME vs;
+vs : COLON TYPE | COMMA v;
+
+VAR : "(\\bvar\\b)";
+TYPE : "(\\binteger\\b|\\breal\\b|\\bboolean\\b|\\bchar\\b)";
+COLON : ":";
+SEMICOLON : ";";
+COMMA : ",";
+NAME : "[A-Za-z]+";
+WS : "[ \t\r\n]" -> drop;
